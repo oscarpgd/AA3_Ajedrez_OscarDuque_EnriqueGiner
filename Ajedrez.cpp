@@ -2,12 +2,11 @@
 #include "Tablero.h"
 
 void InicializarTablero()
-
 {
 
     char tablero[FILAS][COLUMNAS];
 
- //Piezas negras  
+    //Piezas negras  
 
     tablero[0][0] = 'r'; tablero[0][1] = 'n'; tablero[0][2] = 'b'; tablero[0][3] = 'q';
     tablero[0][4] = 'k'; tablero[0][5] = 'b'; tablero[0][6] = 'n'; tablero[0][7] = 'r';
@@ -26,7 +25,7 @@ void InicializarTablero()
         }
     }
 
-//Piezas blancas
+    //Piezas blancas
 
     for (int j = 0; j < COLUMNAS; j++) tablero[6][j] = 'P';
 
