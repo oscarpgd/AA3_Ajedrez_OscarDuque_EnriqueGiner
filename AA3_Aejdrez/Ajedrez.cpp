@@ -1,7 +1,5 @@
 #include <iostream> 
-
-const int FILAS = 8;
-const int COLUMNAS = 8;
+#include "Tablero.h"
 
 void InicializarTablero()
 
@@ -62,11 +60,9 @@ void InicializarTablero()
 
 }
 
-void main()
-
+int main()
 {
-
     InicializarTablero();
-
+    return 0;
 }
 
