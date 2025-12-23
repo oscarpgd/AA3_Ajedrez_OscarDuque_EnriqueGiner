@@ -1,6 +1,0 @@
-﻿  Gameplay.cpp
-Gameplay.obj : error LNK2019: símbolo externo "bool __cdecl EsBlanca(char)" (?EsBlanca@@YA_ND@Z) sin resolver al que se hace referencia en la función main
-Gameplay.obj : error LNK2019: símbolo externo "bool __cdecl EsNegra(char)" (?EsNegra@@YA_ND@Z) sin resolver al que se hace referencia en la función main
-Gameplay.obj : error LNK2019: símbolo externo "bool __cdecl MoverPieza(int,int,int,int)" (?MoverPieza@@YA_NHHHH@Z) sin resolver al que se hace referencia en la función main
-Gameplay.obj : error LNK2019: símbolo externo "bool __cdecl HayRey(char)" (?HayRey@@YA_ND@Z) sin resolver al que se hace referencia en la función main
-C:\Users\enric\source\repos\AA3_Ajedrez_OscarDuque_EnriqueGiner\AA3_Aejdrez\x64\Debug\AA3_Aejdrez.exe : fatal error LNK1120: 4 externos sin resolver
