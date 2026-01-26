@@ -1,0 +1,8 @@
+﻿  Board.cpp
+  GamePlay.cpp
+  main.cpp
+D:\DOCUMENTOS ------\Z_Enti\2o\MIster\AA3\AA3_Aejdrez\main.cpp(4,6): warning C4326: el tipo de valor devuelto de 'main' debe ser 'int' en lugar de 'void'
+  Generando código...
+D:\DOCUMENTOS ------\Z_Enti\2o\MIster\AA3\AA3_Aejdrez\GamePlay.cpp(103,1): warning C4715: 'isAValidSpot': no todas las rutas de acceso de control devuelven un valor
+D:\DOCUMENTOS ------\Z_Enti\2o\MIster\AA3\AA3_Aejdrez\GamePlay.cpp(140,1): warning C4715: 'IsPathClear': no todas las rutas de acceso de control devuelven un valor
+  AA3_Ajedrez_EnriqueGiner_OscarDuque.vcxproj -> D:\DOCUMENTOS ------\Z_Enti\2o\MIster\AA3\AA3_Aejdrez\x64\Debug\AA3_Ajedrez_EnriqueGiner_OscarDuque.exe
