@@ -18,3 +18,7 @@ bool IsMayus(char piece);
 bool IsValidBishopMove(bool isWhiteTurn, const char board[][size], int sRow, int sCol, int eRow, int eCol);
 bool IsValidHorseMove(bool isWhiteTurn, const char board[][size], int sRow, int sCol, int eRow, int eCol);
 bool IsValidQueenMove(bool isWhiteTurn, const char board[][size], int sRow, int sCol, int eRow, int eCol);
+//Funcion del rey 
+bool IsKingAlive(char board[][size], bool isWhite);
+//Función movimiento
+void MovePiece(char board[][size], int sRow, int sCol, int eRow, int eCol);

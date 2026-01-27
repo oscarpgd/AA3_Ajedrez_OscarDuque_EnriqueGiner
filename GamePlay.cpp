@@ -201,3 +201,27 @@ bool IsValidQueenMove(bool isWhiteTurn, const char board[][size], int sRow, int 
 	char target = board[eRow][eCol];
 	return (target == empty || IsEnemy(isWhiteTurn, target));
 }
+bool IsKingAlive(char board[][size], bool isWhite)
+{
+	//Buscamos al rey que queremos
+	char targetKing = isWhite ? wking : bking;
+
+	for (int i = 0; i < size; i++)
+	{
+		for (int j = 0; j < size; j++)
+		{
+			if (board[i][j] == targetKing)
+			{
+				return true; // Rey Encontrado
+			}
+		}
+	}
+	return false; //Rey Muerto
+}
+void MovePiece(char board[][size], int sRow, int sCol, int eRow, int eCol) {
+	
+	board[eRow][eCol] = board[sRow][sCol];
+
+	// 2. Vaciamos la casilla de origen
+	board[sRow][sCol] = empty;
+}
