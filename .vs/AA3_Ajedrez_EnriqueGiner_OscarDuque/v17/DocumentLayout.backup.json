@@ -7,12 +7,12 @@
       "RelativeMoniker": "D:0:0:{43C1F4A2-5C29-439E-81D2-E03D7A51DCEA}|AA3_Ajedrez_EnriqueGiner_OscarDuque.vcxproj|solutionrelative:main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{43C1F4A2-5C29-439E-81D2-E03D7A51DCEA}|AA3_Ajedrez_EnriqueGiner_OscarDuque.vcxproj|D:\\DOCUMENTOS ------\\Z_Enti\\2o\\MIster\\AA3\\AA3_Aejdrez\\GamePlay.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{43C1F4A2-5C29-439E-81D2-E03D7A51DCEA}|AA3_Ajedrez_EnriqueGiner_OscarDuque.vcxproj|solutionrelative:GamePlay.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{43C1F4A2-5C29-439E-81D2-E03D7A51DCEA}|AA3_Ajedrez_EnriqueGiner_OscarDuque.vcxproj|D:\\DOCUMENTOS ------\\Z_Enti\\2o\\MIster\\AA3\\AA3_Aejdrez\\Board.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{43C1F4A2-5C29-439E-81D2-E03D7A51DCEA}|AA3_Ajedrez_EnriqueGiner_OscarDuque.vcxproj|solutionrelative:Board.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{43C1F4A2-5C29-439E-81D2-E03D7A51DCEA}|AA3_Ajedrez_EnriqueGiner_OscarDuque.vcxproj|D:\\DOCUMENTOS ------\\Z_Enti\\2o\\MIster\\AA3\\AA3_Aejdrez\\GamePlay.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{43C1F4A2-5C29-439E-81D2-E03D7A51DCEA}|AA3_Ajedrez_EnriqueGiner_OscarDuque.vcxproj|solutionrelative:GamePlay.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{43C1F4A2-5C29-439E-81D2-E03D7A51DCEA}|AA3_Ajedrez_EnriqueGiner_OscarDuque.vcxproj|D:\\DOCUMENTOS ------\\Z_Enti\\2o\\MIster\\AA3\\AA3_Aejdrez\\GamePlay.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -48,27 +48,27 @@
               "RelativeDocumentMoniker": "main.cpp",
               "ToolTip": "D:\\DOCUMENTOS ------\\Z_Enti\\2o\\MIster\\AA3\\AA3_Aejdrez\\main.cpp",
               "RelativeToolTip": "main.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAACAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-01-26T14:21:51.213Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "GamePlay.cpp",
               "DocumentMoniker": "D:\\DOCUMENTOS ------\\Z_Enti\\2o\\MIster\\AA3\\AA3_Aejdrez\\GamePlay.cpp",
               "RelativeDocumentMoniker": "GamePlay.cpp",
               "ToolTip": "D:\\DOCUMENTOS ------\\Z_Enti\\2o\\MIster\\AA3\\AA3_Aejdrez\\GamePlay.cpp",
               "RelativeToolTip": "GamePlay.cpp",
-              "ViewState": "AgIAALAAAAAAAAAAAAAAwMoAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAADUAAAAAAAAAAAAtwEcAAABhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2026-01-26T14:21:17.854Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Board.cpp",
               "DocumentMoniker": "D:\\DOCUMENTOS ------\\Z_Enti\\2o\\MIster\\AA3\\AA3_Aejdrez\\Board.cpp",
               "RelativeDocumentMoniker": "Board.cpp",
@@ -89,8 +89,7 @@
               "RelativeToolTip": "GamePlay.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-01-26T14:19:34.857Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-26T14:19:34.857Z"
             },
             {
               "$type": "Document",
@@ -102,8 +101,7 @@
               "RelativeToolTip": "Board.h",
               "ViewState": "AgIAAAQAAAAAAAAAAAAAwBUAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-01-26T14:19:17.385Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-26T14:19:17.385Z"
             }
           ]
         },

@@ -28,16 +28,19 @@ void AskPlayer(bool isWhiteTurn, int srow, int scol, int erow, int ecol, char bo
 		// Validar si el movimiento cumple las reglas de la pieza
 		if (erow >= 1 && erow <= 8 && ecol >= 1 && ecol <= 8) {
 			if (isAValidSpot(isWhiteTurn, board, srow, scol, erow, ecol)) {
-				
+
 				MovePiece(board, srow - 1, scol - 1, erow - 1, ecol - 1);
 				CheckPawnPromotion(board, erow - 1, ecol - 1);
-				movimientoFinalizado = true; 
-			else {
+				movimientoFinalizado = true;
+			}
+			else 
+			{
 				std::cout << "Esta pieza no puede mover asi o hay algo en el camino." << std::endl;
 				
 			}
 		}
-		else {
+		else 
+		{
 			std::cout << "Esa Casilla no existe!!" << std::endl;
 		}
 	}
@@ -218,7 +221,8 @@ bool IsValidKingMove(bool isWhiteTurn, const char board[][size], int sRow, int s
 }
 
 // Movimiento del Peon 
-bool IsValidPawnMove(bool isWhiteTurn, const char board[][size], int sRow, int sCol, int eRow, int eCol) {
+bool IsValidPawnMove(bool isWhiteTurn, const char board[][size], int sRow, int sCol, int eRow, int eCol) 
+{
 	int direction = isWhiteTurn ? -1 : 1; 
 	int dr = eRow - sRow;
 	int dc = eCol - sCol;
@@ -232,7 +236,8 @@ bool IsValidPawnMove(bool isWhiteTurn, const char board[][size], int sRow, int s
 }
 
 // Coronacion
-void CheckPawnPromotion(char board[][size], int row, int col) {
+void CheckPawnPromotion(char board[][size], int row, int col) 
+{
 	if (board[row][col] == wpawn && row == 0) board[row][col] = wqueen;
 	if (board[row][col] == bpawn && row == 7) board[row][col] = bqueen;
 }

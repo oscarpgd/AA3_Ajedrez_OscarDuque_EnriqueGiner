@@ -24,6 +24,7 @@ void main()
 		// movimiento 
 		AskPlayer(isWhiteTurn, srow, scol, erow, ecol, board);
 
+		system("cls");
 
 		// Comprobar si el rey ha muerto 
 		if (!IsKingAlive(board, !isWhiteTurn))
