@@ -50,7 +50,7 @@ void AskPlayer(bool isWhiteTurn, int srow, int scol, int erow, int ecol, char bo
 		else
 			std::cout << "Debes elegir una posicion válida\n";
 	}
-	std::cout << srow << " " << scol;
+	
 	//para la pieza que hemos escogido, es una posición válida
 	MovePiece(board, srow - 1, scol - 1, erow - 1, ecol - 1);
 	CheckPawnPromotion(board, erow - 1, ecol - 1);
