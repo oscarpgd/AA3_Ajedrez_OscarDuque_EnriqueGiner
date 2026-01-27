@@ -52,6 +52,8 @@ void AskPlayer(bool isWhiteTurn, int srow, int scol, int erow, int ecol, char bo
 	}
 	std::cout << srow << " " << scol;
 	//para la pieza que hemos escogido, es una posición válida
+	MovePiece(board, srow - 1, scol - 1, erow - 1, ecol - 1);
+	CheckPawnPromotion(board, erow - 1, ecol - 1);
 }
 bool isAValidPiece(bool isWhiteTurn, char board[][size], int srow, int scol)
 {
@@ -76,30 +78,22 @@ bool isAValidPiece(bool isWhiteTurn, char board[][size], int srow, int scol)
 		else return false;
 	}
 }
-bool isAValidSpot(bool isWhiteTurn, char board[][size], int srow, int scol, int erow, int ecol)
-{
-	//Start
-	int sRow = srow - 1;
-	int sCol = scol - 1;
-	//End
-	int eRow = erow - 1;
-	int eCol = ecol - 1;
-	//Para no mover a la misma casilla
-	if (sRow == eRow && sCol == eCol) return false;
-	char piece = board[sRow][sCol];
-	if (piece == empty) return false;
-	bool isWhitePiece = IsMayus(piece);
-	if (isWhiteTurn != isWhitePiece) return false;
-	//Llamada a una comprobación particular pieza por pieza
-	if (piece == 'B' || piece == 'b') {
-		return IsValidBishopMove(isWhiteTurn, board, sRow, sCol, eRow, eCol);
-	}
-	if (piece == 'H' || piece == 'h') {
-		return IsValidHorseMove(isWhiteTurn, board, sRow, sCol, eRow, eCol);
-	}
-	if (piece == 'Q' || piece == 'q') {
-		return IsValidQueenMove(isWhiteTurn, board, sRow, sCol, eRow, eCol);
-	}
+
+bool isAValidSpot(bool isWhiteTurn, char board[][size], int srow, int scol, int erow, int ecol) {
+	int sR = srow - 1;
+	int sC = scol - 1;
+	int eR = erow - 1;
+	int eC = ecol - 1;
+	char piece = board[sR][sC];
+
+	if (piece == 'P' || piece == 'p') return IsValidPawnMove(isWhiteTurn, board, sR, sC, eR, eC);
+	if (piece == 'T' || piece == 't') return IsValidTowerMove(isWhiteTurn, board, sR, sC, eR, eC);
+	if (piece == 'K' || piece == 'k') return IsValidKingMove(isWhiteTurn, board, sR, sC, eR, eC);
+	if (piece == 'B' || piece == 'b') return IsValidBishopMove(isWhiteTurn, board, sR, sC, eR, eC);
+	if (piece == 'H' || piece == 'h') return IsValidHorseMove(isWhiteTurn, board, sR, sC, eR, eC);
+	if (piece == 'Q' || piece == 'q') return IsValidQueenMove(isWhiteTurn, board, sR, sC, eR, eC);
+
+	return false;
 }
 bool IsEnemy(bool isWhiteTurn, char target)
 {
@@ -137,6 +131,8 @@ bool IsPathClear(const char board[][size], int sRow, int sCol, int eRow, int eCo
 		r += stepRow;
 		c += stepCol;
 	}
+
+	return true;
 }
 bool IsMayus(char piece)
 {
@@ -218,10 +214,46 @@ bool IsKingAlive(char board[][size], bool isWhite)
 	}
 	return false; //Rey Muerto
 }
+// Movimiento de la Torre 
+bool IsValidTowerMove(bool isWhiteTurn, const char board[][size], int sRow, int sCol, int eRow, int eCol) {
+	if (sRow != eRow && sCol != eCol) return false; 
+	if (!IsPathClear(board, sRow, sCol, eRow, eCol)) return false; 
+	return board[eRow][eCol] == empty || IsEnemy(isWhiteTurn, board[eRow][eCol]);
+}
+
+// Movimiento del Rey 
+bool IsValidKingMove(bool isWhiteTurn, const char board[][size], int sRow, int sCol, int eRow, int eCol) {
+	int dr = abs(eRow - sRow);
+	int dc = abs(eCol - sCol);
+	if (dr <= 1 && dc <= 1) {
+		return board[eRow][eCol] == empty || IsEnemy(isWhiteTurn, board[eRow][eCol]);
+	}
+	return false;
+}
+
+// Movimiento del Peon 
+bool IsValidPawnMove(bool isWhiteTurn, const char board[][size], int sRow, int sCol, int eRow, int eCol) {
+	int direction = isWhiteTurn ? -1 : 1; 
+	int dr = eRow - sRow;
+	int dc = eCol - sCol;
+
+	// Avance simple
+	if (dc == 0 && dr == direction && board[eRow][eCol] == empty) return true;
+	// Captura diagonal
+	if (abs(dc) == 1 && dr == direction && IsEnemy(isWhiteTurn, board[eRow][eCol])) return true;
+
+	return false;
+}
+
+// Coronacion
+void CheckPawnPromotion(char board[][size], int row, int col) {
+	if (board[row][col] == wpawn && row == 0) board[row][col] = wqueen;
+	if (board[row][col] == bpawn && row == 7) board[row][col] = bqueen;
+}
 void MovePiece(char board[][size], int sRow, int sCol, int eRow, int eCol) {
 	
 	board[eRow][eCol] = board[sRow][sCol];
 
-	// 2. Vaciamos la casilla de origen
+	//Vaciamos la casilla de origen
 	board[sRow][sCol] = empty;
 }

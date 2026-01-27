@@ -7,10 +7,8 @@ void main()
 	// Tablero
 	char board[size][size];
 
-	// Flags del gameloop
 	bool gameOver = false;
-	bool isWhiteTurn = true; // Empiezan las blancas
-
+	bool isWhiteTurn = true; 
 	// Inicialización 
 	InitBoard(board);
 	FillBoard(board);
@@ -26,14 +24,6 @@ void main()
 		// movimiento 
 		AskPlayer(isWhiteTurn, srow, scol, erow, ecol, board);
 
-		
-		//int sR = srow - 1;
-		//int sC = scol - 1;
-		//int eR = erow - 1;
-		//int eC = ecol - 1;
-
-		// Ejecutar el movimiento en la matriz
-		MovePiece(board, sR, sC, eR, eC);
 
 		// Comprobar si el rey ha muerto 
 		if (!IsKingAlive(board, !isWhiteTurn))
