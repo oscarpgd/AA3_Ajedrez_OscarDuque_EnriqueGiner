@@ -1,59 +1,46 @@
 #include "GamePlay.h"
 void AskPlayer(bool isWhiteTurn, int srow, int scol, int erow, int ecol, char board[][size])
 {
-	//Codigo para printear de quien es el turno
-	std::string tempText;
-	tempText = isWhiteTurn ? "\nTurno de las Blancas\n" : "Turno de las negras\n";
+	std::string tempText = isWhiteTurn ? "\nTurno de las Blancas\n" : "Turno de las negras\n";
 	std::cout << tempText;
-	//Bucle para escoger la pieza que mover
-	//Bucle para comprobar que en la posicion que elija el player, hay pieza valida
-	while (true)
+
+	bool movimientoFinalizado = false;
+
+	while (!movimientoFinalizado)
 	{
-		//Bucle de pregunta para la pieza a mover, y comprobar si esta dentro de los límites
-		while (true) {
-			std::cout << "Que pieza quieres mover (X): ";
-			std::cin >> srow;
-			if (srow >= 1 && srow < 9)
-				break;
+		// Seleccionar pieza de ORIGEN
+		std::cout << " SELECCION DE PIEZA " << std::endl;
+		std::cout << "Fila (X): "; std::cin >> srow;
+		std::cout << "Columna (Y): "; std::cin >> scol;
+
+		// Validar pieza
+		if (srow < 1 || srow > 8 || scol < 1 || scol > 8 || !isAValidPiece(isWhiteTurn, board, srow, scol)) {
+			std::cout << "Error: Seleccion invalida o no es una pieza tuya." << std::endl;
+			continue; 
 		}
-		while (true) {
-			std::cout << "Que pieza quieres mover (Y): ";
-			std::cin >> scol;
-			if (scol >= 1 && scol < 9)
-				break;
+
+		// Donde se mueve la ficha
+		std::cout << "Mover a Fila (X): "; std::cin >> erow;
+		if (erow == 0) continue; 
+		std::cout << "Mover a Columna (Y): "; std::cin >> ecol;
+		if (ecol == 0) continue;
+
+		// Validar si el movimiento cumple las reglas de la pieza
+		if (erow >= 1 && erow <= 8 && ecol >= 1 && ecol <= 8) {
+			if (isAValidSpot(isWhiteTurn, board, srow, scol, erow, ecol)) {
+				
+				MovePiece(board, srow - 1, scol - 1, erow - 1, ecol - 1);
+				CheckPawnPromotion(board, erow - 1, ecol - 1);
+				movimientoFinalizado = true; 
+			else {
+				std::cout << "Esta pieza no puede mover asi o hay algo en el camino." << std::endl;
+				
+			}
 		}
-		//Comprobación de si en esa posicion hay una pieza del color correspondiente
-		bool validPiece = isAValidPiece(isWhiteTurn, board, srow, scol);
-		if (validPiece) break;
-		else
-			std::cout << "Debes elegir una posicion donde haya una pieza de tu color\n";
+		else {
+			std::cout << "Esa Casilla no existe!!" << std::endl;
+		}
 	}
-	//Bucle para comprobar si la posicion donde quiere mover es una posicion valida
-	while (true)
-	{
-		//Bucle de pregunta para la pieza a mover, y comprobar si esta dentro de los límites
-		while (true) {
-			std::cout << "A que posicion la quieres mover (X): ";
-			std::cin >> erow;
-			if (erow >= 1 && erow < 9)
-				break;
-		}
-		while (true) {
-			std::cout << "A que posicion la quiere mover (Y): ";
-			std::cin >> ecol;
-			if (ecol >= 1 && ecol < 9)
-				break;
-		}
-		//Comprobación de si en esa posicion hay una pieza del color correspondiente
-		bool validPosition = isAValidPiece(isWhiteTurn, board, srow, scol);
-		if (validPosition) break;
-		else
-			std::cout << "Debes elegir una posicion válida\n";
-	}
-	
-	//para la pieza que hemos escogido, es una posición válida
-	MovePiece(board, srow - 1, scol - 1, erow - 1, ecol - 1);
-	CheckPawnPromotion(board, erow - 1, ecol - 1);
 }
 bool isAValidPiece(bool isWhiteTurn, char board[][size], int srow, int scol)
 {
@@ -123,7 +110,7 @@ bool IsPathClear(const char board[][size], int sRow, int sCol, int eRow, int eCo
 		distance = dr;
 	else
 		distance = dc;
-	//Avanzamos paso a paso comprobando los huecos
+	//Miramos si nada por en medio
 	int r = sRow + stepRow;
 	int c = sCol + stepCol;
 	for (int i = 1; i < distance; i++) {
@@ -131,7 +118,6 @@ bool IsPathClear(const char board[][size], int sRow, int sCol, int eRow, int eCo
 		r += stepRow;
 		c += stepCol;
 	}
-
 	return true;
 }
 bool IsMayus(char piece)
