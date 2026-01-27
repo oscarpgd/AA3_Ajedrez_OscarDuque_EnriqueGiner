@@ -13,8 +13,8 @@ void FillBoard(char board[][size])
 	board[0][0] = btower;
 	board[0][1] = bhorse;
 	board[0][2] = bbishop;
-	board[0][3] = bking;
-	board[0][4] = bqueen;
+	board[0][4] = bking;
+	board[0][3] = bqueen;
 	board[0][5] = bbishop;
 	board[0][6] = bhorse;
 	board[0][7] = btower;
