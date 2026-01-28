@@ -1,8 +1,9 @@
 #include "board.h"
 void InitBoard(char board[][size])
 {
-	for (int i = 0; i < size; i++) {
-		for (int j = 0; j < size; j++) {
+	//Init simple
+	for (short i = 0; i < size; i++) {
+		for (short j = 0; j < size; j++) {
 			board[i][j] = empty;
 		}
 	}
@@ -18,7 +19,7 @@ void FillBoard(char board[][size])
 	board[0][5] = bbishop;
 	board[0][6] = bhorse;
 	board[0][7] = btower;
-	for (int i = 0; i < size; i++)
+	for (short i = 0; i < size; i++)
 	{
 		board[1][i] = bpawn;
 	}
@@ -31,7 +32,7 @@ void FillBoard(char board[][size])
 	board[7][5] = wbishop;
 	board[7][6] = whorse;
 	board[7][7] = wtower;
-	for (int i = 0; i < size; i++)
+	for (short i = 0; i < size; i++)
 	{
 		board[6][i] = wpawn;
 	}
@@ -40,10 +41,10 @@ void PrintBoard(char board[][size])
 {
 	PrintCols();
 	//Aqui se añade un toque especial para printear filas
-	for (int i = 0; i < size; i++)
+	for (short i = 0; i < size; i++)
 	{
 		std::cout << i + 1 << " ";
-		for (int j = 0; j < size; j++)
+		for (short j = 0; j < size; j++)
 		{
 			std::cout << board[i][j] << " ";
 		}
@@ -52,7 +53,7 @@ void PrintBoard(char board[][size])
 }
 void PrintCols()
 {
-	for (int i = 0; i < size + 1; i++) {
+	for (short i = 0; i < size + 1; i++) {
 		if (i == 0)
 			std::cout << "  ";
 		else

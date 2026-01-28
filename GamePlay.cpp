@@ -79,6 +79,7 @@ bool isAValidPiece(bool isWhiteTurn, char board[][size], int srow, int scol)
 }
 
 bool isAValidSpot(bool isWhiteTurn, char board[][size], int srow, int scol, int erow, int ecol) {
+	//Checkeo de posicion individualment depende del caso + resta de la posicion para adecuarse al tablero
 	int sR = srow - 1;
 	int sC = scol - 1;
 	int eR = erow - 1;
@@ -96,7 +97,9 @@ bool isAValidSpot(bool isWhiteTurn, char board[][size], int srow, int scol, int 
 }
 bool IsEnemy(bool isWhiteTurn, char target)
 {
-	if (target == empty) return false;
+	if (target == empty) 
+		return false;
+
 	bool esPiezaBlanca = IsMayus(target);
 	return isWhiteTurn ? !esPiezaBlanca : esPiezaBlanca;
 }
@@ -105,13 +108,19 @@ bool IsPathClear(const char board[][size], int sRow, int sCol, int eRow, int eCo
 	//Distance row & distance col
 	int dr = eRow - sRow;
 	int dc = eCol - sCol;
+
 	//Determinar la dirección
 	int stepRow = 0;
-	if (dr > 0) stepRow = 1;
-	else if (dr < 0) stepRow = -1;
+	if (dr > 0) 
+		stepRow = 1;
+	else if (dr < 0) 
+		stepRow = -1;
 	int stepCol = 0;
-	if (dc > 0) stepCol = 1;
-	else if (dc < 0) stepCol = -1;
+	if (dc > 0) 
+		stepCol = 1;
+	else if (dc < 0) 
+		stepCol = -1;
+
 	//distancia, la mayor de las dos
 	int distance;
 	if (dr < 0)
@@ -125,8 +134,11 @@ bool IsPathClear(const char board[][size], int sRow, int sCol, int eRow, int eCo
 	//Miramos si nada por en medio
 	int r = sRow + stepRow;
 	int c = sCol + stepCol;
+
 	for (int i = 1; i < distance; i++) {
-		if (board[r][c] != empty) return false;
+		if (board[r][c] != empty) 
+			return false;
+
 		r += stepRow;
 		c += stepCol;
 	}
@@ -144,18 +156,21 @@ bool IsValidBishopMove(bool isWhiteTurn, const char board[][size], int sRow, int
 {
 	int dr = eRow - sRow;
 	int dc = eCol - sCol;
+
 	// Convertimos diferencias a positivas para comparar
 	int absDr = (dr < 0) ? -dr : dr;
 	int absDc = (dc < 0) ? -dc : dc;
-	// Debe ser movimiento diagonal (misma distancia en fila y columna, y no cero)
+
+	// Debe ser movimiento diagonal
 	if (absDr == 0 || absDc == 0 || absDr != absDc) {
 		return false;
 	}
-	// Camino libre (no chequeamos destino, solo intermedios)
+
+	// Camino libre
 	if (!IsPathClear(board, sRow, sCol, eRow, eCol)) {
 		return false;
 	}
-	// Destino válido: vacío o enemigo
+	// Destino si hay enemigo
 	char target = board[eRow][eCol];
 	return (target == empty || IsEnemy(isWhiteTurn, target));
 }
@@ -163,15 +178,17 @@ bool IsValidHorseMove(bool isWhiteTurn, const char board[][size], int sRow, int 
 {
 	int dr = eRow - sRow;
 	int dc = eCol - sCol;
+
 	// Convertimos a positivo para comparar
 	int absDr = (dr < 0) ? -dr : dr;
 	int absDc = (dc < 0) ? -dc : dc;
-	// Patrón L del caballo: (2 en una dirección y 1 en perpendicular)
+
+	// Patrón L del caballo: 2  +1 
 	bool esPatronL = (absDr == 2 && absDc == 1) || (absDr == 1 && absDc == 2);
 	if (!esPatronL) {
 		return false;
 	}
-	// Solo destino válido: vacío o enemigo
+	// Destino si hay enemigo
 	char target = board[eRow][eCol];
 	return (target == empty || IsEnemy(isWhiteTurn, target));
 }
@@ -229,7 +246,8 @@ bool IsValidKingMove(bool isWhiteTurn, const char board[][size], int sRow, int s
 	}
 
 	// El rey se mueve dos columnas en la misma fila
-	if (dr == 0 && dc == 2) {
+	if (dr == 0 && dc == 2) 
+	{
 
 		// Blancas
 		if (isWhiteTurn && !whiteKingMoved && sRow == 7) {
@@ -287,11 +305,12 @@ void CheckPawnPromotion(char board[][size], int row, int col)
 	if (board[row][col] == bpawn && row == 7) board[row][col] = bqueen;
 }
 
+//Parte que interactua con el enroque
 void MovePiece(char board[][size], int sRow, int sCol, int eRow, int eCol) {
 
 	char piece = board[sRow][sCol];
 
-	// ---------------- ENROQUE ----------------
+	//Enroque
 	if ((piece == wking || piece == bking) && abs(eCol - sCol) == 2) {
 
 		// Enroque corto
