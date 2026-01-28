@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include "board.h"
+
 //Funcion para preguntar al jugador donde mover
 //srow y erow para star y end, respectivamente, lo mismo con las cols
 void AskPlayer(bool isWhiteTurn, int srow, int scol, int erow, int ecol, char board[][size]);

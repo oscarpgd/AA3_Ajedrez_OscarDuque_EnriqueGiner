@@ -1,4 +1,13 @@
 #include "GamePlay.h"
+
+//Variables del Enroque: Declaraciones con statics para no petar el código, y no incluirlas en el main
+static bool whiteKingMoved = false;
+static bool blackKingMoved = false;
+static bool whiteLeftTowerMoved = false;
+static bool whiteRightTowerMoved = false;
+static bool blackLeftTowerMoved = false;
+static bool blackRightTowerMoved = false;
+
 void AskPlayer(bool isWhiteTurn, int srow, int scol, int erow, int ecol, char board[][size])
 {
 	std::string tempText = isWhiteTurn ? "\nTurno de las Blancas\n" : "Turno de las negras\n";
@@ -210,13 +219,49 @@ bool IsValidTowerMove(bool isWhiteTurn, const char board[][size], int sRow, int 
 	return board[eRow][eCol] == empty || IsEnemy(isWhiteTurn, board[eRow][eCol]);
 }
 
-// Movimiento del Rey 
 bool IsValidKingMove(bool isWhiteTurn, const char board[][size], int sRow, int sCol, int eRow, int eCol) {
 	int dr = abs(eRow - sRow);
 	int dc = abs(eCol - sCol);
+
+	// Movimiento normal del rey
 	if (dr <= 1 && dc <= 1) {
 		return board[eRow][eCol] == empty || IsEnemy(isWhiteTurn, board[eRow][eCol]);
 	}
+
+	// El rey se mueve dos columnas en la misma fila
+	if (dr == 0 && dc == 2) {
+
+		// Blancas
+		if (isWhiteTurn && !whiteKingMoved && sRow == 7) {
+			// Enroque corto
+			if (eCol == 6 && !whiteRightTowerMoved &&
+				board[7][5] == empty && board[7][6] == empty &&
+				board[7][7] == wtower)
+				return true;
+
+			// Enroque largo
+			if (eCol == 2 && !whiteLeftTowerMoved &&
+				board[7][1] == empty && board[7][2] == empty && board[7][3] == empty &&
+				board[7][0] == wtower)
+				return true;
+		}
+
+		// Negras
+		if (!isWhiteTurn && !blackKingMoved && sRow == 0) {
+			// Enroque corto
+			if (eCol == 6 && !blackRightTowerMoved &&
+				board[0][5] == empty && board[0][6] == empty &&
+				board[0][7] == btower)
+				return true;
+
+			// Enroque largo
+			if (eCol == 2 && !blackLeftTowerMoved &&
+				board[0][1] == empty && board[0][2] == empty && board[0][3] == empty &&
+				board[0][0] == btower)
+				return true;
+		}
+	}
+
 	return false;
 }
 
@@ -241,10 +286,41 @@ void CheckPawnPromotion(char board[][size], int row, int col)
 	if (board[row][col] == wpawn && row == 0) board[row][col] = wqueen;
 	if (board[row][col] == bpawn && row == 7) board[row][col] = bqueen;
 }
-void MovePiece(char board[][size], int sRow, int sCol, int eRow, int eCol) {
-	
-	board[eRow][eCol] = board[sRow][sCol];
 
-	//Vaciamos la casilla de origen
+void MovePiece(char board[][size], int sRow, int sCol, int eRow, int eCol) {
+
+	char piece = board[sRow][sCol];
+
+	// ---------------- ENROQUE ----------------
+	if ((piece == wking || piece == bking) && abs(eCol - sCol) == 2) {
+
+		// Enroque corto
+		if (eCol > sCol) {
+			board[eRow][eCol - 1] = board[sRow][7];
+			board[sRow][7] = empty;
+		}
+		// Enroque largo
+		else {
+			board[eRow][eCol + 1] = board[sRow][0];
+			board[sRow][0] = empty;
+		}
+	}
+
+	// Movimiento normal
+	board[eRow][eCol] = board[sRow][sCol];
 	board[sRow][sCol] = empty;
+
+	// Marcar piezas movidas
+	if (piece == wking) whiteKingMoved = true;
+	if (piece == bking) blackKingMoved = true;
+
+	if (piece == wtower) {
+		if (sCol == 0) whiteLeftTowerMoved = true;
+		if (sCol == 7) whiteRightTowerMoved = true;
+	}
+
+	if (piece == btower) {
+		if (sCol == 0) blackLeftTowerMoved = true;
+		if (sCol == 7) blackRightTowerMoved = true;
+	}
 }
